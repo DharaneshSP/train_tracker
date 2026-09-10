@@ -1,0 +1,10 @@
+{"type":"meta","ts":1788981643557,"info":"","device":"Google sdk_gphone64_arm64","sdk":36}
+{"type":"event","ts":1788981643561,"label":"SESSION_START","hasAccel":true,"hasStepDetector":false}
+{"type":"cells","ts":1788981643567,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-92,"reg":true}]}
+{"type":"tick","ts":1788981643000,"n":8,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}
+{"type":"tick","ts":1788981644000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}
+{"type":"tick","ts":1788981645000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}
+{"type":"tick","ts":1788981646000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}
+{"type":"tick","ts":1788981647000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}
+{"type":"tick","ts":1788981648000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}
+{"type":"tick","ts":1788981649000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1}

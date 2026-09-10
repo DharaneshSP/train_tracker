@@ -1,0 +1,16 @@
+{"type":"meta","ts":1789021766366,"info":"BlueLine_south Teynampet->Guindy","device":"Xiaomi 2412DPC0AI","sdk":36}
+{"type":"event","ts":1789021766389,"label":"SESSION_START","hasAccel":true,"hasStepDetector":true,"push":true,"line":"BlueLine_south","originIndex":0,"destIndex":4,"expectedStops":4,"origin":"Teynampet","dest":"Guindy"}
+{"type":"cells","ts":1789021766393,"towers":[{"type":"LTE","cid":166755350,"tac":42133,"rsrp":-65,"reg":true}]}
+{"type":"cells","ts":1789021766399,"towers":[{"type":"LTE","cid":166755350,"tac":42133,"rsrp":-65,"reg":true}]}
+{"type":"cells","ts":1789021766451,"towers":[{"type":"LTE","cid":192395275,"tac":42133,"rsrp":-44,"reg":true}]}
+{"type":"tick","ts":1789021766000,"n":25,"energy":3.293502,"floor":3.293502,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":1,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021767000,"n":50,"energy":1.619065,"floor":1.619065,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":2,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021768000,"n":50,"energy":1.579794,"floor":1.579794,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":1,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021769000,"n":50,"energy":1.556388,"floor":1.556388,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":1,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021770000,"n":49,"energy":4.100259,"floor":1.556388,"thr":0.020000,"ref":0.000000,"state":"MOVING","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":3,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"cells","ts":1789021771398,"towers":[{"type":"LTE","cid":192395275,"tac":42133,"rsrp":-44,"reg":true}]}
+{"type":"tick","ts":1789021771000,"n":50,"energy":0.437128,"floor":0.437128,"thr":0.020000,"ref":0.000000,"state":"MOVING","stops":0,"checkedIn":false,"dwell":0,"moveRun":1,"steps":1,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021772000,"n":50,"energy":0.291317,"floor":0.291317,"thr":0.020000,"ref":0.000000,"state":"MOVING","stops":0,"checkedIn":false,"dwell":0,"moveRun":2,"steps":0,"sinceStep":0,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021773000,"n":50,"energy":0.820147,"floor":0.291317,"thr":0.020000,"ref":0.000000,"state":"MOVING","stops":0,"checkedIn":false,"dwell":0,"moveRun":3,"steps":0,"sinceStep":1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789021774000,"n":50,"energy":1.002593,"floor":0.291317,"thr":0.020000,"ref":0.000000,"state":"MOVING","stops":0,"checkedIn":false,"dwell":0,"moveRun":4,"steps":0,"sinceStep":2,"alighting":false,"exited":false}
+{"type":"event","ts":1789021775204,"label":"SESSION_END"}

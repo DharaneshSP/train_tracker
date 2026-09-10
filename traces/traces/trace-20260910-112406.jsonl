@@ -1,0 +1,8 @@
+{"type":"meta","ts":1789019646950,"info":"BlueLine_south Teynampet->Guindy","device":"Xiaomi 2412DPC0AI","sdk":36}
+{"type":"event","ts":1789019646975,"label":"SESSION_START","hasAccel":true,"hasStepDetector":true,"push":true,"line":"BlueLine_south","originIndex":0,"destIndex":4,"expectedStops":4,"origin":"Teynampet","dest":"Guindy"}
+{"type":"cells","ts":1789019646989,"towers":[{"type":"LTE","cid":153840436,"tac":42139,"rsrp":-70,"reg":true},{"type":"LTE","cid":268435455,"tac":65535,"rsrp":-77,"reg":false}]}
+{"type":"cells","ts":1789019646990,"towers":[{"type":"LTE","cid":153840436,"tac":42139,"rsrp":-70,"reg":true},{"type":"LTE","cid":268435455,"tac":65535,"rsrp":-77,"reg":false}]}
+{"type":"tick","ts":1789019647000,"n":45,"energy":0.011663,"floor":0.011663,"thr":0.020000,"ref":0.011663,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789019648000,"n":50,"energy":0.004139,"floor":0.004139,"thr":0.020000,"ref":0.011605,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789019649000,"n":50,"energy":0.005028,"floor":0.004139,"thr":0.020000,"ref":0.011547,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"event","ts":1789019650209,"label":"SESSION_END"}

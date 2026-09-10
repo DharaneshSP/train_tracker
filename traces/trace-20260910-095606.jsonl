@@ -1,0 +1,11 @@
+{"type":"meta","ts":1789014366043,"info":"","device":"Google sdk_gphone64_arm64","sdk":36}
+{"type":"event","ts":1789014366047,"label":"SESSION_START","hasAccel":true,"hasStepDetector":false}
+{"type":"cells","ts":1789014366049,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-68,"reg":true}]}
+{"type":"tick","ts":1789014366000,"n":19,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014367000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014368000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014369000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014370000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014371000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014372000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789014373000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}

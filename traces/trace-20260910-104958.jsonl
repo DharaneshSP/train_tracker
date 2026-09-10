@@ -1,0 +1,19 @@
+{"type":"meta","ts":1789017598944,"info":"BlueLine_south Teynampet->Guindy","device":"Google sdk_gphone64_arm64","sdk":36}
+{"type":"event","ts":1789017598954,"label":"SESSION_START","hasAccel":true,"hasStepDetector":false,"push":true,"line":"BlueLine_south","originIndex":0,"destIndex":4,"expectedStops":4,"origin":"Teynampet","dest":"Guindy"}
+{"type":"cells","ts":1789017598956,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-68,"reg":true}]}
+{"type":"cells","ts":1789017598957,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-68,"reg":true}]}
+{"type":"tick","ts":1789017599000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017600000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017601000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017602000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"cells","ts":1789017603965,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-68,"reg":true}]}
+{"type":"tick","ts":1789017603000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017604000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017605000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017606000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017607000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"UNKNOWN","stops":0,"checkedIn":false,"dwell":0,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"cells","ts":1789017608105,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-73,"reg":true}]}
+{"type":"cells","ts":1789017608969,"towers":[{"type":"NR","cid":100500,"tac":8514,"rsrp":-73,"reg":true}]}
+{"type":"tick","ts":1789017608000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"STOPPED","stops":0,"checkedIn":false,"dwell":10,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"tick","ts":1789017609000,"n":20,"energy":0.000000,"floor":0.000000,"thr":0.020000,"ref":0.000000,"state":"STOPPED","stops":0,"checkedIn":false,"dwell":11,"moveRun":0,"steps":0,"sinceStep":-1,"alighting":false,"exited":false}
+{"type":"event","ts":1789017610476,"label":"SESSION_END"}
