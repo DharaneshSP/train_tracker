@@ -1,7 +1,0 @@
-com.nammayatri.traintracker.app-pngs-0 /Users/dharaneshsp/wrk/dev/train_tracker/app/build/generated/res/pngs/release
-com.nammayatri.traintracker.app-resValues-1 /Users/dharaneshsp/wrk/dev/train_tracker/app/build/generated/res/resValues/release
-com.nammayatri.traintracker.app-packageReleaseResources-2 /Users/dharaneshsp/wrk/dev/train_tracker/app/build/intermediates/incremental/release/packageReleaseResources/merged.dir
-com.nammayatri.traintracker.app-packageReleaseResources-3 /Users/dharaneshsp/wrk/dev/train_tracker/app/build/intermediates/incremental/release/packageReleaseResources/stripped.dir
-com.nammayatri.traintracker.app-release-4 /Users/dharaneshsp/wrk/dev/train_tracker/app/build/intermediates/merged_res/release/mergeReleaseResources
-com.nammayatri.traintracker.app-main-5 /Users/dharaneshsp/wrk/dev/train_tracker/app/src/main/res
-com.nammayatri.traintracker.app-release-6 /Users/dharaneshsp/wrk/dev/train_tracker/app/src/release/res

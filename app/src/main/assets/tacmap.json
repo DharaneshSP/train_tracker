@@ -1,0 +1,132 @@
+{
+ "line": "BlueLine_south",
+ "operators": [
+  "40440"
+ ],
+ "note": "TAC-keyed. TAC verified identical across 3 rides (9-10 Sep); cellId only 9%. tac_to_tac_s = measured seconds from entering 'from' station's TAC to entering 'to' station's TAC, fwd = towards Guindy. Leg time does not scale with distance on this line - use measured times; distance fallback only for unridden legs. TAC boundaries are direction-asymmetric: southbound Nandanam's TAC appeared 6s before its doors, northbound Teynampet's TAC appeared right after leaving Nandanam - always prefer same-direction leg times. dep_to_tac_s = accelerometer departure -> next station's TAC, used for the first leg from the origin. operators = PLMNs (MCC+MNC) this TAC map was surveyed on; any other operator runs the tracker map-free (count new TACs in station order). Ride D (11 Sep, northbound) folded in: LM->Said 137, Said->Nan 208, Nan->Tey 101, Guindy departure->LM TAC 37.",
+ "stations": [
+  {
+   "name": "Teynampet",
+   "lat": 13.0368,
+   "lon": 80.246419,
+   "tacs": [
+    42144
+   ]
+  },
+  {
+   "name": "Nandanam",
+   "lat": 13.031709,
+   "lon": 80.241196,
+   "tacs": [
+    42142
+   ]
+  },
+  {
+   "name": "Saidapet",
+   "lat": 13.02331,
+   "lon": 80.223719,
+   "tacs": [
+    45127
+   ]
+  },
+  {
+   "name": "Little Mount",
+   "lat": 13.014663,
+   "lon": 80.224167,
+   "tacs": [
+    45129
+   ]
+  },
+  {
+   "name": "Guindy",
+   "lat": 13.008669,
+   "lon": 80.212606,
+   "tacs": [
+    42133,
+    42134
+   ]
+  }
+ ],
+ "segments": [
+  {
+   "from": "Teynampet",
+   "to": "Nandanam",
+   "dist_m": 800,
+   "tac_to_tac_s": {
+    "fwd": [],
+    "rev": [
+     104,
+     101
+    ]
+   },
+   "dep_to_tac_s": {
+    "fwd": [
+     135
+    ],
+    "rev": []
+   }
+  },
+  {
+   "from": "Nandanam",
+   "to": "Saidapet",
+   "dist_m": 2111,
+   "tac_to_tac_s": {
+    "fwd": [
+     142,
+     125
+    ],
+    "rev": [
+     178,
+     208
+    ]
+   },
+   "dep_to_tac_s": {
+    "fwd": [],
+    "rev": []
+   }
+  },
+  {
+   "from": "Saidapet",
+   "to": "Little Mount",
+   "dist_m": 963,
+   "tac_to_tac_s": {
+    "fwd": [
+     128,
+     125
+    ],
+    "rev": [
+     168,
+     137
+    ]
+   },
+   "dep_to_tac_s": {
+    "fwd": [],
+    "rev": []
+   }
+  },
+  {
+   "from": "Little Mount",
+   "to": "Guindy",
+   "dist_m": 1419,
+   "tac_to_tac_s": {
+    "fwd": [
+     136,
+     148
+    ],
+    "rev": []
+   },
+   "dep_to_tac_s": {
+    "fwd": [],
+    "rev": [
+     37
+    ]
+   }
+  }
+ ],
+ "defaults": {
+  "tac_to_departure_s": 30,
+  "tac_lead_before_doors_s": 25,
+  "fallback_base_s": 116,
+  "fallback_per_km_s": 16.0
+ }
+}

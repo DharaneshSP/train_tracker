@@ -42,17 +42,38 @@ def corrob_at(timeline, t):
     return c
 
 
-def run(energies, steps_at, p, timeline=None):
+def run(energies, steps_at, p, timeline=None, tacs=None):
     floor_buf = deque(maxlen=p.floor_window)
     moving_ref = 0.0
     stopped_run = moving_run = dwell = move_state = 0
-    state = "UNKNOWN"; stops = 0; checked_in = False
+    state = "UNKNOWN"; stops = 0; stops_rejected = 0; checked_in = False
     alighting = False; exited = False; alight_t = None; step_free_moving = 0
     check_in_t = boarded_t = None; moving_started = None
     last_step_t = None
     out = []
 
-    for t, e in energies:
+    # TAC verification gate for stop counting (SensorEngine.onTacObserved/gate):
+    # IMU dwell alone measured 10 candidates on a real ride vs a true count of 4.
+    # Requiring an independent TAC change since the last evaluated candidate - run
+    # causally, no lookahead - reproduced exactly 4/4. The very first TAC reading
+    # of a session must establish a baseline, not register as a "change" (that bug
+    # cost one false-positive stop before it was caught).
+    prev_tac = None; tac_changed_since_eval = False; any_tac_seen = False
+
+    # Interleave ticks and TAC readings in real chronological order - this is the
+    # causal replay: the gate only ever sees what has already happened by time t.
+    events = [(t, "tick", e) for t, e in energies]
+    if tacs:
+        events += [(t, "tac", tac) for t, tac in tacs]
+    events.sort(key=lambda x: x[0])
+
+    for ev in events:
+        if ev[1] == "tac":
+            t, _, tac = ev
+            if any_tac_seen and tac != prev_tac: tac_changed_since_eval = True
+            any_tac_seen = True; prev_tac = tac
+            continue
+        t, _, e = ev
         if steps_at and t in steps_at:
             last_step_t = t
         floor_buf.append(e)
@@ -80,8 +101,13 @@ def run(energies, steps_at, p, timeline=None):
             dwell += 1
             if moving_run >= p.move_hold:
                 if checked_in and dwell >= p.min_dwell:
-                    stops += 1
-                    out.append((t, f"STOP #{stops} (dwell {dwell}s)"))
+                    if (not any_tac_seen) or tac_changed_since_eval:
+                        stops += 1
+                        out.append((t, f"STOP #{stops} (dwell {dwell}s) [TAC-verified]"))
+                    else:
+                        stops_rejected += 1
+                        out.append((t, f"stop candidate REJECTED (dwell {dwell}s, no TAC change)"))
+                    tac_changed_since_eval = False
                 state = "MOVING"; move_state = 0; moving_started = t - moving_run; dwell = 0
         else:
             move_state += 1
@@ -120,12 +146,12 @@ def run(energies, steps_at, p, timeline=None):
                 if alighting and t - alight_t >= p.exit_confirm:
                     exited = True
                     out.append((t, f"EXITED (alighted ~t+{alight_t})"))
-    return dict(events=out, stops=stops, checked_in=checked_in,
+    return dict(events=out, stops=stops, stops_rejected=stops_rejected, checked_in=checked_in,
                 check_in_t=check_in_t, boarded_t=boarded_t,
                 exited=exited, alight_t=alight_t)
 
 def load(path):
-    energies, steps, labels, cells, leg = [], set(), [], [], None
+    energies, steps, labels, cells, tacs, leg = [], set(), [], [], [], None
     t0 = None
     for ln in open(path):
         ln = ln.strip()
@@ -139,13 +165,15 @@ def load(path):
         elif r["type"] == "cells":
             srv = next((c for c in r["towers"]
                         if c.get("reg") and c.get("cid", 0) > 0 and c["cid"] != 268435455), None)
-            if srv: cells.append((ts - t0, srv["cid"]))
+            if srv:
+                cells.append((ts - t0, srv["cid"]))
+                if "tac" in srv: tacs.append((ts - t0, srv["tac"]))
         elif r["type"] == "event":
             labels.append((ts - t0, r["label"]))
             if r["label"] == "SESSION_START" and "origin" in r:
                 leg = {k: r.get(k) for k in
                        ("line", "originIndex", "destIndex", "expectedStops", "origin", "dest")}
-    return energies, steps, labels, cells, leg
+    return energies, steps, labels, cells, tacs, leg
 
 
 def load_map(path):
@@ -216,22 +244,23 @@ if __name__ == "__main__":
     ap.add_argument("--checkin-strict", type=int, default=60)
     a = ap.parse_args()
 
-    energies, steps, labels, cells, leg = load(a.trace)
+    energies, steps, labels, cells, tacs, leg = load(a.trace)
     if not energies:
         print("no ticks in trace"); sys.exit(1)
     smap_early = load_map(a.map)
     timeline = corroboration_timeline(cells, leg, smap_early)
-    r = run(energies, steps, a, timeline)
+    r = run(energies, steps, a, timeline, tacs)
 
     print(f"trace: {a.trace}   {len(energies)}s of data, {len(steps)}s with steps, "
-          f"{len(cells)} cell reads")
+          f"{len(cells)} cell reads, {len(tacs)} TAC reads")
     if leg: print(f"leg:   {leg['origin']} -> {leg['dest']}  ({leg['expectedStops']} stops)")
     print(f"\nGROUND TRUTH (rider taps)          DETECTED")
     print(f"{'-'*36}   {'-'*36}")
     for t, l in labels: print(f"  t+{t:5d}s  {l}")
     print()
     for t, l in r["events"]: print(f"                                       t+{t:5d}s  {l}")
-    print(f"\nresult: checked_in={r['checked_in']}  stops_counted={r['stops']}  exited={r['exited']}")
+    print(f"\nresult: checked_in={r['checked_in']}  stops_counted={r['stops']}"
+          f"  stops_rejected={r['stops_rejected']}  exited={r['exited']}")
     truth_off=[t for t,l in labels if l=="STEPPED_OFF"]
     if truth_off and r['alight_t'] is not None:
         print(f"alight error:     {r['alight_t'] - truth_off[0]:+d}s vs STEPPED_OFF tap")

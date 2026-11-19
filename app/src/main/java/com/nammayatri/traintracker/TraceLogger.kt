@@ -32,13 +32,11 @@ class TraceLogger(ctx: Context, meta: String) {
         """{"type":"tick","ts":${t.tMs},"n":${t.samples},"energy":${f(t.energy)},"floor":${f(t.floor)},""" +
         """"thr":${f(t.threshold)},"ref":${f(t.movingRef)},"state":"${t.state}","stops":${t.stopCount},""" +
         """"checkedIn":${t.checkedIn},"dwell":${t.dwellSec},"moveRun":${t.movingRunSec},""" +
-        """"steps":${t.stepsThisSec},"sinceStep":${t.secSinceStep},"alighting":${t.alighting},"exited":${t.exited},"corrob":${t.corroboration}}"""
+        """"steps":${t.stepsThisSec},"sinceStep":${t.secSinceStep},"alighting":${t.alighting},"exited":${t.exited},"corrob":${t.corroboration},"stopsRejected":${t.stopsRejected}}"""
     )
 
     fun cells(ts: Long, cells: List<CellSample>) {
-        val arr = cells.joinToString(",") {
-            """{"type":"${it.type}","cid":${it.cellId},"tac":${it.tac},"rsrp":${it.rsrp},"reg":${it.registered}}"""
-        }
+        val arr = cells.joinToString(",") { it.toJson() }
         line("""{"type":"cells","ts":$ts,"towers":[$arr]}""")
     }
 

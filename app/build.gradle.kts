@@ -11,8 +11,8 @@ android {
         applicationId = "com.nammayatri.traintracker"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1"
+        versionCode = 12
+        versionName = "0.12"
     }
 
     signingConfigs {
@@ -38,4 +38,8 @@ android {
     kotlinOptions { jvmTarget = "17" }
 }
 
-dependencies { }
+dependencies {
+    // JVM tests only - replay recorded rides through TacTracker. Nothing ships in the APK.
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.json:json:20231013")
+}

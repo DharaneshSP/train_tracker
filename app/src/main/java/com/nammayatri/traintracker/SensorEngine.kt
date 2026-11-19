@@ -25,7 +25,8 @@ data class Tick(
     val secSinceStep: Long,
     val alighting: Boolean,
     val exited: Boolean,
-    val corroboration: Int
+    val corroboration: Int,
+    val stopsRejected: Int
 )
 
 /**
@@ -102,6 +103,31 @@ class SensorEngine(
      */
     var cellCorroboration: Int = 0
 
+    /**
+     * TAC verification gate for stop counting. IMU dwell alone measured 10 candidate
+     * stops on a real ride against a true count of 4 - overcounting from flip-flop
+     * across the vibration threshold, not real stops. Requiring an independent TAC
+     * change since the last evaluated candidate cut that to exactly 4/4 on the same
+     * ride, run causally (no lookahead): every real station stop showed a TAC change
+     * during its own dwell; nothing else did.
+     *
+     * Falls back to ungated IMU-only counting until the first TAC is ever seen this
+     * session (anyTacSeen), the same "never block, only demand more" posture as
+     * cellCorroboration above - a session with no cell coverage still counts stops.
+     */
+    private var tacChangedSinceEval = false
+    private var anyTacSeen = false
+    private var prevTacForGate = 0
+    var stopsRejected = 0; private set
+
+    /** Call whenever the serving TAC is read, whether or not it changed - the first
+     *  ever reading must establish a baseline, not be mistaken for a transition. */
+    fun onTacObserved(tac: Int) {
+        if (anyTacSeen && tac != prevTacForGate) tacChangedSinceEval = true
+        anyTacSeen = true
+        prevTacForGate = tac
+    }
+
     fun onStep(tsMs: Long) {
         stepsThisSec++
         lastStepMs = tsMs
@@ -162,7 +188,11 @@ class SensorEngine(
                 if (movingRun >= moveHoldSec) {
                     // Leaving a dwell. Count it as a station only once we know we're aboard -
                     // otherwise standing on the origin platform would count as stop #1.
-                    if (checkedIn && dwellSec >= minDwellSec) stopCount++
+                    if (checkedIn && dwellSec >= minDwellSec) {
+                        if (!anyTacSeen || tacChangedSinceEval) stopCount++
+                        else stopsRejected++
+                        tacChangedSinceEval = false
+                    }
                     state = MotionState.MOVING
                     moveStateSec = 0
                     movingStartedMs = tMs - movingRun * 1000L
@@ -225,7 +255,8 @@ class SensorEngine(
             stopCount = stopCount, checkedIn = checkedIn, dwellSec = dwellSec,
             movingRunSec = moveStateSec, stepsThisSec = stepsThisSec,
             secSinceStep = if (secSinceStep > 99999) -1 else secSinceStep,
-            alighting = alighting, exited = exited, corroboration = cellCorroboration
+            alighting = alighting, exited = exited, corroboration = cellCorroboration,
+            stopsRejected = stopsRejected
         )
     }
 }

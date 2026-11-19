@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -28,6 +28,15 @@
         <service
             android:name=".TrackingService"
             android:exported="false"
-            android:foregroundServiceType="location" />
+            android:stopWithTask="true"
+            android:foregroundServiceType="specialUse">
+            <!-- Not a real "location" service: it reads accelerometer + serving cell
+                 identity for offline research logging, never android.location APIs.
+                 "location" type would hard-require the permission before startForeground()
+                 even succeeds, crashing the whole app on a single denial. -->
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="sensor_and_cell_id_research_logging" />
+        </service>
     </application>
 </manifest>
