@@ -1,0 +1,223 @@
+{
+ "line": "BlueLine_south",
+ "built_from": [
+  "telephony-log.txt (Teynampet->Guindy)",
+  "trace-20260910-115936.jsonl (Guindy->Teynampet, real device)"
+ ],
+ "key_field": "tac",
+ "note": "TAC verified 100% stable across both rides; cellId only 24% - treat cellIds as supplementary evidence, never the primary key.",
+ "stations": {
+  "Teynampet": {
+   "tacs": [
+    42144
+   ],
+   "anchor_distance_m": {
+    "42144": 81
+   },
+   "approx_lat": 13.03751,
+   "approx_lon": 80.24659,
+   "cellIds_seen": [
+    166763786,
+    166763787,
+    192363797
+   ],
+   "cellIds_never_gps_located": [
+    166763786,
+    166763787
+   ],
+   "confirmed_in_rides": [
+    "A",
+    "B"
+   ],
+   "dwell_seconds": {
+    "42144": {
+     "trace_A_Teynampet_to_Guindy": [
+      131
+     ],
+     "trace_B_Guindy_to_Teynampet": [
+      163
+     ]
+    }
+   },
+   "likely_underground_or_tunnel_adjacent": true
+  },
+  "Nandanam": {
+   "tacs": [
+    42142
+   ],
+   "anchor_distance_m": {
+    "42142": 37
+   },
+   "approx_lat": 13.03184,
+   "approx_lon": 80.2415,
+   "cellIds_seen": [
+    166761739,
+    192361749
+   ],
+   "cellIds_never_gps_located": [],
+   "confirmed_in_rides": [
+    "A",
+    "B"
+   ],
+   "dwell_seconds": {
+    "42142": {
+     "trace_A_Teynampet_to_Guindy": [
+      142
+     ],
+     "trace_B_Guindy_to_Teynampet": [
+      103
+     ]
+    }
+   },
+   "likely_underground_or_tunnel_adjacent": false
+  },
+  "Saidapet": {
+   "tacs": [
+    45127
+   ],
+   "anchor_distance_m": {
+    "45127": 71
+   },
+   "approx_lat": 13.02387,
+   "approx_lon": 80.22877,
+   "cellIds_seen": [
+    166763019,
+    179454730,
+    179454734,
+    192363029,
+    197287475
+   ],
+   "cellIds_never_gps_located": [
+    179454730,
+    179454734,
+    192363029,
+    197287475
+   ],
+   "confirmed_in_rides": [
+    "A",
+    "B"
+   ],
+   "dwell_seconds": {
+    "45127": {
+     "trace_A_Teynampet_to_Guindy": [
+      128,
+      6
+     ],
+     "trace_B_Guindy_to_Teynampet": [
+      5,
+      178
+     ]
+    }
+   },
+   "likely_underground_or_tunnel_adjacent": true
+  },
+  "Little Mount": {
+   "tacs": [
+    45129
+   ],
+   "anchor_distance_m": {
+    "45129": 39
+   },
+   "approx_lat": 13.01439,
+   "approx_lon": 80.22394,
+   "cellIds_seen": [
+    154380821,
+    154431509,
+    154431510,
+    154431539,
+    154431540,
+    167925012,
+    167925042,
+    179980812,
+    180031700,
+    192246581,
+    192388819
+   ],
+   "cellIds_never_gps_located": [
+    154380821,
+    154431509,
+    154431510,
+    154431540,
+    167925042,
+    179980812,
+    180031700
+   ],
+   "confirmed_in_rides": [
+    "A",
+    "B"
+   ],
+   "dwell_seconds": {
+    "45129": {
+     "trace_A_Teynampet_to_Guindy": [
+      20,
+      110
+     ],
+     "trace_B_Guindy_to_Teynampet": [
+      96,
+      68
+     ]
+    }
+   },
+   "likely_underground_or_tunnel_adjacent": true
+  },
+  "Guindy": {
+   "tacs": [
+    42133,
+    42134
+   ],
+   "anchor_distance_m": {
+    "42133": 17,
+    "42134": 24
+   },
+   "approx_lat": 13.00916,
+   "approx_lon": 80.21319,
+   "cellIds_seen": [
+    166755349,
+    166755379,
+    171722768,
+    179443410,
+    179443413,
+    192355339,
+    192395275,
+    192395475,
+    192466955,
+    192466956,
+    197322778,
+    197358602
+   ],
+   "cellIds_never_gps_located": [
+    171722768,
+    179443413,
+    192355339,
+    192395475,
+    197358602
+   ],
+   "confirmed_in_rides": [
+    "A",
+    "B"
+   ],
+   "dwell_seconds": {
+    "42133": {
+     "trace_A_Teynampet_to_Guindy": [
+      106,
+      105
+     ],
+     "trace_B_Guindy_to_Teynampet": [
+      221,
+      11
+     ]
+    },
+    "42134": {
+     "trace_A_Teynampet_to_Guindy": [
+      10
+     ],
+     "trace_B_Guindy_to_Teynampet": [
+      13,
+      3
+     ]
+    }
+   },
+   "likely_underground_or_tunnel_adjacent": true
+  }
+ }
+}

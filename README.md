@@ -236,3 +236,66 @@ Both bugs the replay harness caught before any ride:
    rough recurrence, a much lower bar than full sequence matching.)
 
 Ride the same stretch three times, at different times of day, before drawing conclusions.
+
+## v0.9 — TAC tracker (primary logic)
+
+Check-in, station tracking and arrival ETA now come from `TacTracker.kt`, driven by the
+serving cell's TAC (Android `getTac()`, the same value older logs call `areaCode`) plus the
+accelerometer. Across three real Blue Line rides every station had the same TAC; cell ID
+repeated only 9%, so cell ID is no longer used for any decision.
+
+- **Check-in**: *provisional* when motion starts after your last step while still at the
+  origin (walk → stand → train moves you); *confirmed* when the next station's TAC appears.
+  Boarding time is when the motion started, not your last step.
+- **Stations**: position only moves forward in the direction of travel, after a new TAC has
+  held for 5 s — this absorbed every TAC flip-flop seen so far. TAC changed 6–43 s before the
+  doors opened, so "Arriving X" and "Next stop is yours" come early.
+- **ETA**: measured leg times from `tacmap.json`, not distance ÷ speed — on this line an
+  800 m leg took 135 s and a 2.1 km leg 126 s. Coordinates are only a fallback for unridden legs.
+  Expect ±~20 s per leg in the same direction.
+- Also handles: app opened mid-journey (one TAC reading places you), wrong direction (one alert).
+
+The old accelerometer / TAC-set / cellId-set engines still run and log for comparison only.
+
+Validate changes before shipping:
+```bash
+python3 tools/tac_tracker.py traces/real2/traces/trace-20260910-202819.jsonl --exclude-ride C
+./gradlew :app:testReleaseUnitTest     # replays real rides through the Kotlin tracker
+```
+
+## v0.11 — any operator, dual SIM, nothing runs after close
+
+- **Operator-aware.** `tacmap.json` now lists `operators` (`40440` = Airtel TN). On a
+  surveyed operator the tracker runs in **MAP** mode as before. On any other operator
+  (Jio, Vi, BSNL) it runs **MAP-FREE**: the first TAC is the origin; a TAC not yet seen on
+  this ride, held 5 s, is the next station in planned order. Station names and leg times
+  still come from the map. Lost in map-free: mid-ride cold start, wrong-direction alert.
+  - A second area at the origin while standing/walking is merged into the origin.
+  - A new area within half the expected leg of the last station is merged into that
+    station (ride B met Guindy's 42134 only 28 s before Little Mount's TAC).
+  - Replay: map-free gives the same stations and times as map mode on rides B, C, D.
+- **Dual SIM.** Every SIM's registered cell is logged with its operator code. The tracker
+  follows the operator on the map, else the mobile-data SIM, else the first registered one.
+  The status panel shows `MAP` / `MAP-FREE`, the operator, and `[other SIM …]` rows.
+- **Logs** add `enb` (LTE cell id >> 8) per cell, plus tracker events `OPERATOR_CHOSEN`,
+  `TRACKER_MODE`, `ORIGIN_AREA_ADDED`, `AREA_MERGED`, `MAP_MISS`, `APP_CLOSED`.
+- **Close = stop.** Service has `stopWithTask="true"`, stops in `onTaskRemoved`, and
+  returns `START_NOT_STICKY` — swiping the app away ends recording and nothing restarts.
+  Screen lock / home button keep recording (notification says so).
+- **Map data:** ride D northbound leg times folded in.
+
+Multi-operator ride: install on phones with different SIMs (or one dual-SIM phone), set the
+same leg, ride together, pull `decisions-cell-towers-*` and `decisions-tac-tracker-*` from each.
+
+## v0.12 — full live cell panel
+
+The "cell towers" panel lists everything the phone reports at that moment (grows as needed):
+- **SIMs:** slot, carrier, operator code, data network type, `DATA` SIM, roaming, `[tracked]`.
+- **Every registered cell** (`* SERVING` = tracked SIM, `+ REGISTERED` = other SIM) and **every neighbour**, strongest first.
+- **Per cell:** type, operator, cell id, eNodeB + site id (LTE), TAC (→ station when on map), PCI, channel,
+  bands, bandwidth, measurement age, RSRP, RSRQ, RSSI, SNR, CQI, timing advance, and type extras
+  (NR CSI RSRP/RSRQ/SINR, GSM bit error rate, WCDMA Ec/No).
+- `?` marks values seen as placeholders on the test phone: RSRP `-44?`, timing advance `1282?`.
+
+Logs: the same new fields go into every tower JSON (`rssi, cqi, bands, bwKhz, ageMs, extra`); a `SIMS`
+event is written whenever SIM/network info changes.
